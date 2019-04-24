@@ -1,28 +1,31 @@
-<form action="">
+<div class="container">
+  <form #fc="ngForm" (ngSubmit)="onSubmit(fc)">
 
-  <div class="form-group">
-    <label for="">Nome</label>
-    <input type="text" name="nome" class="form-control">
-  </div>
+    <h2>Cadastro de Cliente</h2>
 
-  <div class="form-group">
-    <label for="">E-mail</label>
-    <input type="email" name="E-mail" class="form-control">
-  </div>
+    <div class="form-group">
+      <label for="">Nome</label>
+      <input type="text" name="nome" [(ngModel)]="cliente.nome" class="form-control" required>
+    </div>
 
-  <div class="form-group">
-    <label for="">Senha</label>
-    <input type="password" name="Senha" class="form-control">
-  </div>
+    <div class="form-group">
+      <label for="">E-mail</label>
+      <input type="email" name="email" [(ngModel)]="cliente.email" class="form-control" required>
+    </div>
 
-  <div class="form-group">
-    <label for="">Confirmação de senha</label>
-    <input type="text" name="conf" class="form-control">
-  </div>
+    <div class="form-group">
+      <label for="">Senha</label>
+      <input type="password" name="pws" [(ngModel)]="cliente.pws" class="form-control" required>
+    </div>
 
-  <div class="form-group">
-    <button class="btn btn-primary">Salvar</button>
-    <button type="reset" class="btn btn-primary">Cancelar</button>
-  </div>
+    <div class="form-group">
+      <label for="">Confirmação de senha</label>
+      <input type="password" name="conf" [(ngModel)]="conf" class="form-control" required>
+    </div>
 
-</form>
+    <div class="form-group text-right">
+      <button type="submit" class="btn btn-primary mr-2">Salvar</button>
+      <button type="reset" class="btn btn-primary">Cancelar</button>
+    </div>
+  </form>
+</div>
