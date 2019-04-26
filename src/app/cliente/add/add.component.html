@@ -5,27 +5,42 @@
 
     <div class="form-group">
       <label for="">Nome</label>
-      <input type="text" name="nome" [(ngModel)]="cliente.nome" class="form-control" required>
+      <input type="text" name="nome" [(ngModel)]="cliente.nome" class="form-control" #nome="ngModel" required>
     </div>
 
     <div class="form-group">
       <label for="">E-mail</label>
-      <input type="email" name="email" [(ngModel)]="cliente.email" class="form-control" required>
+      <input type="email" name="email" [(ngModel)]="cliente.email" class="form-control" #email="ngModel" required>
     </div>
 
     <div class="form-group">
       <label for="">Senha</label>
-      <input type="password" name="pws" [(ngModel)]="cliente.pws" class="form-control" required>
+      <input type="password" name="pws" [(ngModel)]="cliente.pws" class="form-control" minlength="6" #p="ngModel" required>
+      <strong class="text-danger" *ngIf="p.invalid && p.dirty"> Senha muito curta!</strong>
     </div>
 
     <div class="form-group">
       <label for="">Confirmação de senha</label>
-      <input type="password" name="conf" [(ngModel)]="conf" class="form-control" required>
+      <input type="password" name="conf" [(ngModel)]="conf" class="form-control" minlength="6" #c="ngModel" required>
+      <strong class="text-danger" *ngIf="p.value != c.value"> Senhas diferentes!</strong>
     </div>
 
     <div class="form-group text-right">
-      <button type="submit" class="btn btn-primary mr-2">Salvar</button>
+      <button type="submit" class="btn btn-primary mr-2" [disabled]="fc.invalid">Salvar</button>
       <button type="reset" class="btn btn-primary">Cancelar</button>
     </div>
   </form>
+</div>
+
+<div class="container" *ngIf="clientes">
+  <table class="table">
+    <tr>
+      <th>Nome</th>
+      <th>E-mail</th>
+    </tr>
+    <tr *ngFor="let cliente of clientes">
+      <td>{{cliente.nome}}</td>
+      <td>{{cliente.email}}</td>
+    </tr>
+  </table>
 </div>

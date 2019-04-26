@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Cliente } from '../cliente';
+import { ClienteService } from '../cliente.service';
 
 @Component({
   selector: 'app-add',
@@ -9,17 +10,24 @@ import { Cliente } from '../cliente';
 export class AddComponent implements OnInit {
 
   private cliente: Cliente;
+  private clientes: Cliente[];
 
-  constructor() { }
+  constructor(private clienteService: ClienteService) {
+  }
 
   ngOnInit() {
     this.cliente = new Cliente;
   }
 
-  onSubmit(form){
-    console.log(form);
-    if (form.valid){
-      
+  onSubmit(form) {
+    if (this.cliente.pws == form.value.conf) {
+      if (form.valid) {
+        this.clienteService.addCliente(this.cliente);
+        alert("cadastrado");
+        this.cliente = new Cliente;
+        form.reset();
+      }
     }
+    this.clientes = this.clienteService.getClientes();
   }
 }
