@@ -37,10 +37,14 @@
     <tr>
       <th>Nome</th>
       <th>E-mail</th>
+      <th>/</th>
+      <th>X</th>
     </tr>
-    <tr *ngFor="let cliente of clientes">
+    <tr *ngFor="let cliente of clientes; index as id">
       <td>{{cliente.nome}}</td>
       <td>{{cliente.email}}</td>
+      <td (click)="edit(id, cliente)">/</td>
+      <td (click)="remover(id)">X</td>
     </tr>
   </table>
 </div>

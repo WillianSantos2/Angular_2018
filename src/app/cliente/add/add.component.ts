@@ -30,4 +30,16 @@ export class AddComponent implements OnInit {
     }
     this.clientes = this.clienteService.getClientes();
   }
+
+  edit(id:number, cliente:Cliente){
+    console.log(id, cliente);
+    this.cliente = new Cliente;
+    // this.cliente = cliente;
+    this.cliente = this.clienteService.getcliente(id);
+  }
+
+  remover(id:number){
+    this.clienteService.deleteCliente(id);
+  }
+
 }

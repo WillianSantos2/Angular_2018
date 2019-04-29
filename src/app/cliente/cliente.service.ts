@@ -20,4 +20,16 @@ export class ClienteService {
     return this.clientes;
   }
 
+  public updateCliente(id:number, cliente:Cliente){
+    return this.clientes[id] = cliente;
+  }
+
+  public deleteCliente(id:number){
+    this.clientes.splice(id, 1);
+  }
+
+  public getcliente(id:number){
+    return this.clientes[id];
+  }
+
 }
