@@ -1,0 +1,28 @@
+{
+  "clientes": [
+    {
+      "id": 1,
+      "nome": "admin",
+      "email": "admin@admin.com ",
+      "pws": "123456",
+      "ativo": true
+    },
+    {
+      "ativo": true,
+      "nome": "222222",
+      "email": "crapha@yahoo.com.br",
+      "pws": "111111",
+      "id": 2
+    },
+    {
+      "ativo": true,
+      "nome": "adfa",
+      "email": "crapha@yahoo.com.br",
+      "pws": "111111",
+      "id": 3
+    }
+  ],
+  "produtos": [
+    {}
+  ]
+}

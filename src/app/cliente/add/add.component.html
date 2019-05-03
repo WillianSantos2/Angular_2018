@@ -32,7 +32,7 @@
   </form>
 </div>
 
-<div class="container" *ngIf="clientes">
+<div class="container" *ngIf="clientes$ | async as clientes">
   <table class="table">
     <tr>
       <th>Nome</th>

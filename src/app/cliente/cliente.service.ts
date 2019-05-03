@@ -1,4 +1,7 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+
+import { environment } from '../../environments/environment';
 import { Cliente } from './cliente';
 
 @Injectable({
@@ -6,30 +9,38 @@ import { Cliente } from './cliente';
 })
 export class ClienteService {
 
-  private clientes:Cliente[];
+  private clientes: Cliente[];
+  private url: string = environment.url_rest + "clientes";
 
-  constructor() { 
+  constructor(
+    private http: HttpClient
+  ) {
     this.clientes = [];
   }
 
-  public addCliente(cliente:Cliente){
-    this.clientes.push(cliente);
+  public addCliente(cliente: Cliente) {
+    //this.clientes.push(cliente);
+    return this.http.post(this.url, cliente);
   }
 
-  public getClientes(){
-    return this.clientes;
+  public getClientes() {
+    //return this.clientes;
+    return this.http.get<Cliente[]>(this.url);
   }
 
-  public updateCliente(id:number, cliente:Cliente){
-    return this.clientes[id] = cliente;
+  public updateCliente(id: number, cliente: Cliente) {
+    // return this.clientes[id] = cliente;
+    return null;
   }
 
-  public deleteCliente(id:number){
-    this.clientes.splice(id, 1);
+  public deleteCliente(id: number) {
+    // this.clientes.splice(id, 1);
+    return null;
   }
 
-  public getcliente(id:number){
-    return this.clientes[id];
+  public getcliente(id: number) {
+    // return this.clientes[id];
+    return null;
   }
 
 }
