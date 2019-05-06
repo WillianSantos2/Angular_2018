@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+
 import { environment } from '../../environments/environment';
 import { Produto } from './produto';
 
@@ -7,6 +8,7 @@ import { Produto } from './produto';
   providedIn: 'root'
 })
 export class ProdutoService {
+  
   private url: string = environment.url_rest + "produtos";
   private produtos: Produto[];
 
@@ -16,9 +18,9 @@ export class ProdutoService {
     this.produtos = [];
   }
 
-  public addProduto(Produto: Produto) {
+  public addProduto(produto: Produto) {
     //this.produtos.push(Produto);
-    return this.http.post(this.url, Produto);
+    return this.http.post(this.url, produto);
   }
 
   public getprodutos() {
@@ -26,9 +28,9 @@ export class ProdutoService {
     return this.http.get<Produto[]>(this.url);
   }
 
-  public updateProduto(id: number, Produto: Produto) {
+  public updateProduto(id: number, produto: Produto) {
     // return this.produtos[id] = Produto;
-    return this.http.put(this.url + "/" + id, Produto);
+    return this.http.put(this.url + "/" + id, produto);
   }
 
   public deleteProduto(id: number) {

@@ -9,6 +9,7 @@ import { Observable } from 'rxjs';
   styleUrls: ['./add.component.css']
 })
 export class AddProdutoComponent implements OnInit {
+
   private produto: Produto;
   private produtos$: Observable<Produto[]>;
 
