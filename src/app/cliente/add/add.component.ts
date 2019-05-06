@@ -18,7 +18,7 @@ export class AddClienteComponent implements OnInit {
 
   ngOnInit() {
     this.cliente = new Cliente;
-    this.clientes$ = this.clienteService.getClientes();
+    this.atualizaLista();
   }
 
   onSubmit(form) {
@@ -31,6 +31,7 @@ export class AddClienteComponent implements OnInit {
               console.log(res);
               this.cliente = new Cliente;
               form.reset();
+              this.atualizaLista();
             },
             err => {
               alert("Erro ao cadastrar!");
@@ -39,26 +40,40 @@ export class AddClienteComponent implements OnInit {
           );
       }
     }
-    this.clientes$ = this.clienteService.getClientes();
+
   }
 
-  edit(id: number, cliente: Cliente) {
-    console.log(id, cliente);
+  edit(id: number) {
     this.cliente = new Cliente;
     // this.cliente = cliente;
     this.clienteService.getcliente(id)
-    .subscribe(
-      res=>{
-        this.cliente = res
-      },
-      err=>{
-        console.log(err);
-      }
-    );
+      .subscribe(
+        res => {
+          this.cliente = res
+        },
+        err => {
+          console.log(err);
+        }
+      );
   }
 
   remover(id: number) {
-    this.clienteService.deleteCliente(id);
+    if (confirm("Remover o registro?")) {
+      this.clienteService.deleteCliente(id)
+        .subscribe(
+          res => {
+            alert("Removido!");
+            this.atualizaLista();
+          },
+          err => {
+            alert("Erro ao remover: " + err)
+          }
+        );
+    }
   }
 
+  atualizaLista() {
+    this.clientes$ = this.clienteService.getClientes();
+  }
+  
 }

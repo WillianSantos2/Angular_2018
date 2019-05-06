@@ -17,27 +17,27 @@ export class AddProdutoComponent implements OnInit {
 
   ngOnInit() {
     this.produto = new Produto;
-    this.produtos$ = this.produtoService.getprodutos();
+    this.atualizaLista();
   }
 
   onSubmit(form) {
-      if (form.valid) {
-        this.produtoService.addProduto(this.produto)
-          .subscribe(
-            res => {
-              alert("cadastrado");
-              console.log(res);
-              this.produto = new Produto;
-              form.reset();
-              this.produtos$ = this.produtoService.getprodutos();
-            },
-            err => {
-              alert("Erro ao cadastrar!");
-              console.log(err);
-            }
-          );
-      }
-   
+    if (form.valid) {
+      this.produtoService.addProduto(this.produto)
+        .subscribe(
+          res => {
+            alert("cadastrado");
+            console.log(res);
+            this.produto = new Produto;
+            form.reset();
+            this.atualizaLista();
+          },
+          err => {
+            alert("Erro ao cadastrar!");
+            console.log(err);
+          }
+        );
+    }
+
   }
 
   edit(id: number, produto: Produto) {
@@ -56,7 +56,20 @@ export class AddProdutoComponent implements OnInit {
   }
 
   remover(id: number) {
-    this.produtoService.deleteProduto(id);
+    if (confirm("Remover o registro?")) {
+      this.produtoService.deleteProduto(id)
+        .subscribe(
+          res => {
+            alert("Removido!");
+            this.atualizaLista();
+          },
+          err => {
+            alert("Erro ao remover: " + err)
+          }
+        );
+    }
   }
-
+  atualizaLista() {
+    this.produtos$ = this.produtoService.getprodutos();
+  }
 }

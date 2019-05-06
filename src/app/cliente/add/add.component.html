@@ -15,7 +15,8 @@
 
     <div class="form-group">
       <label for="">Senha</label>
-      <input type="password" name="pws" [(ngModel)]="cliente.pws" class="form-control" minlength="6" #p="ngModel" required>
+      <input type="password" name="pws" [(ngModel)]="cliente.pws" class="form-control" minlength="6" #p="ngModel"
+        required>
       <strong class="text-danger" *ngIf="p.invalid && p.dirty"> Senha muito curta!</strong>
     </div>
 
@@ -37,14 +38,14 @@
     <tr>
       <th>Nome</th>
       <th>E-mail</th>
-      <th>/</th>
-      <th>X</th>
+      <th><i class="fas fa-pen"></i></th>
+      <th><i class="fas fa-trash-alt"></i></th>
     </tr>
     <tr *ngFor="let cliente of clientes; index as id">
       <td>{{cliente.nome}}</td>
       <td>{{cliente.email}}</td>
-      <td (click)="edit(id, cliente)">/</td>
-      <td (click)="remover(id)">X</td>
+      <td (click)="edit(cliente.id)" style="cursor: pointer"><i class="fas fa-pen"></i></td>
+      <td (click)="remover(cliente.id)" style="cursor: pointer"><i class="fas fa-trash-alt"></i></td>
     </tr>
   </table>
 </div>

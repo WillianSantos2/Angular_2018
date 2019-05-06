@@ -46,8 +46,8 @@
       <th>Quant</th>
       <th>Valor</th>
       <th>Ativo</th>
-      <th>/</th>
-      <th>X</th>
+      <th><i class="fas fa-pen"></i></th>
+      <th><i class="fas fa-trash-alt"></i></th>
     </tr>
     <tr *ngFor="let produto of produtos; index as id">
       <td>{{produto.nome}}</td>
@@ -55,8 +55,8 @@
       <td>{{produto.quant}}</td>
       <td>{{produto.valor}}</td>
       <td>{{produto.ativo}}</td>
-      <td (click)="edit(produto.id, produto)">/</td>
-      <td (click)="remover(produto.id)">X</td>
+      <td (click)="edit(produto.id, produto)" style="cursor: pointer"><i class="fas fa-pen"></i></td>
+      <td (click)="remover(produto.id)" style="cursor: pointer"><i class="fas fa-trash-alt"></i></td>
     </tr>
   </table>
 </div>
