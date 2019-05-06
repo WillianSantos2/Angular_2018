@@ -23,6 +23,13 @@
     }
   ],
   "produtos": [
-    {}
+    {
+      "ativo": true,
+      "nome": "AiFone 4X ",
+      "descricao": "telemovel de 4GB",
+      "quant": 12,
+      "valor": 1234,
+      "id": 1
+    }
   ]
 }

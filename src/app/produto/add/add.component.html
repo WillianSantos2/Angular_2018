@@ -1,0 +1,62 @@
+<div class="container">
+  <form #fc="ngForm" (ngSubmit)="onSubmit(fc)">
+
+    <h2>Cadastro de Produto</h2>
+
+    <div class="form-group">
+      <label for="">Nome</label>
+      <input type="text" name="nome" [(ngModel)]="produto.nome" class="form-control" #nome="ngModel" required>
+    </div>
+
+    <div class="form-group">
+      <label for="">Descrição</label>
+      <input type="text" name="descricao" [(ngModel)]="produto.descricao" class="form-control" #desc="ngModel" required>
+    </div>
+
+    <div class="form-group">
+      <label for="">Quantidade</label>
+      <input type="number" name="quant" [(ngModel)]="produto.quant" class="form-control" #quant="ngModel" required>
+    </div>
+
+    <div class="form-group">
+      <label for="">Valor</label>
+      <input type="number" name="valor" [(ngModel)]="produto.valor" class="form-control" #valor="ngModel" required>
+    </div>
+
+    <div class="form-check">
+      <label class="form-check-label" for="">
+        <input type="checkbox" name="ativo" [(ngModel)]="produto.ativo" class="form-check-input" #ativo="ngModel"
+          checked required>
+        Ativo
+      </label>
+    </div>
+
+    <div class="form-group text-right">
+      <button type="submit" class="btn btn-primary mr-2" [disabled]="fc.invalid">Salvar</button>
+      <button type="reset" class="btn btn-primary">Cancelar</button>
+    </div>
+  </form>
+</div>
+
+<div class="container" *ngIf="produtos$ | async as produtos">
+  <table class="table">
+    <tr>
+      <th>Nome</th>
+      <th>Descricao</th>
+      <th>Quant</th>
+      <th>Valor</th>
+      <th>Ativo</th>
+      <th>/</th>
+      <th>X</th>
+    </tr>
+    <tr *ngFor="let produto of produtos; index as id">
+      <td>{{produto.nome}}</td>
+      <td>{{produto.descricao}}</td>
+      <td>{{produto.quant}}</td>
+      <td>{{produto.valor}}</td>
+      <td>{{produto.ativo}}</td>
+      <td (click)="edit(produto.id, produto)">/</td>
+      <td (click)="remover(produto.id)">X</td>
+    </tr>
+  </table>
+</div>

@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
   templateUrl: './add.component.html',
   styleUrls: ['./add.component.css']
 })
-export class AddComponent implements OnInit {
+export class AddClienteComponent implements OnInit {
 
   private cliente: Cliente;
   private clientes$: Observable<Cliente[]>;
@@ -46,7 +46,15 @@ export class AddComponent implements OnInit {
     console.log(id, cliente);
     this.cliente = new Cliente;
     // this.cliente = cliente;
-    this.cliente = this.clienteService.getcliente(id);
+    this.clienteService.getcliente(id)
+    .subscribe(
+      res=>{
+        this.cliente = res
+      },
+      err=>{
+        console.log(err);
+      }
+    );
   }
 
   remover(id: number) {

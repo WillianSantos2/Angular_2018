@@ -30,17 +30,17 @@ export class ClienteService {
 
   public updateCliente(id: number, cliente: Cliente) {
     // return this.clientes[id] = cliente;
-    return null;
+    return this.http.put(this.url + "/" + id, cliente);
   }
 
   public deleteCliente(id: number) {
     // this.clientes.splice(id, 1);
-    return null;
+    return this.http.delete(this.url + "/" + id);
   }
 
   public getcliente(id: number) {
     // return this.clientes[id];
-    return null;
+    return this.http.get<Cliente>(this.url + "/" + id);
   }
 
 }
