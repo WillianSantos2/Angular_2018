@@ -8,7 +8,7 @@ import { Produto } from './produto';
   providedIn: 'root'
 })
 export class ProdutoService {
-  
+
   private url: string = environment.url_rest + "produtos";
   private produtos: Produto[];
 
@@ -42,5 +42,4 @@ export class ProdutoService {
     // return this.produtos[id];
     return this.http.get<Produto>(this.url + "/" + id);
   }
-
 }

@@ -5,4 +5,5 @@ export class Produto {
     quant: number;
     valor: number;
     ativo: boolean = true;
+    fotos:string[] = [];
 }

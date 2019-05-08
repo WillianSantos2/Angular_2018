@@ -27,7 +27,7 @@ export class AddProdutoComponent implements OnInit {
         .subscribe(
           res => {
             alert("cadastrado");
-            console.log(res);
+            //console.log(res);
             this.produto = new Produto;
             form.reset();
             this.atualizaLista();
@@ -42,9 +42,9 @@ export class AddProdutoComponent implements OnInit {
   }
 
   edit(id: number, produto: Produto) {
-    console.log(id, produto);
+    //console.log(id, produto);
     this.produto = new Produto;
-    // this.produto = produto;
+    //this.produto = produto;
     this.produtoService.getProduto(id)
       .subscribe(
         res => {
@@ -70,7 +70,25 @@ export class AddProdutoComponent implements OnInit {
         );
     }
   }
+
   atualizaLista() {
     this.produtos$ = this.produtoService.getprodutos();
+  }
+  
+//Foto ------------------------------------
+  async addFoto(event) {
+    let reader = new FileReader();
+    if (event.target.files && event.target.files.length > 0) {
+      let file = event.target.files[0];
+      reader.readAsDataURL(file);
+      reader.onload = _ => {
+        this.produto.fotos.push(""+reader.result);
+      }
+    }
+    console.log(this.produto);
+  }
+
+  delFoto(idFoto){
+    this.produto.fotos.splice(idFoto,1)
   }
 }

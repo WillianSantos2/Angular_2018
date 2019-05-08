@@ -28,7 +28,7 @@ export class AddClienteComponent implements OnInit {
           .subscribe(
             res => {
               alert("cadastrado");
-              console.log(res);
+              //console.log(res);
               this.cliente = new Cliente;
               form.reset();
               this.atualizaLista();
@@ -49,7 +49,7 @@ export class AddClienteComponent implements OnInit {
     this.clienteService.getcliente(id)
       .subscribe(
         res => {
-          this.cliente = res
+          this.cliente = res;
         },
         err => {
           console.log(err);
