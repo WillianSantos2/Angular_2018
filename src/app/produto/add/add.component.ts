@@ -23,6 +23,7 @@ export class AddProdutoComponent implements OnInit {
 
   onSubmit(form) {
     if (form.valid) {
+      if (this.produto.id == null) {
       this.produtoService.addProduto(this.produto)
         .subscribe(
           res => {
@@ -37,8 +38,22 @@ export class AddProdutoComponent implements OnInit {
             console.log(err);
           }
         );
+    } else {
+      this.produtoService.updateProduto(this.produto.id, this.produto)
+        .subscribe(
+          res => {
+            alert("Atualizado");
+            //console.log(res);
+            this.produto = new Produto;
+            form.reset();
+            this.atualizaLista();
+          },
+          err => {
+            alert("Erro ao Atualizar!");
+            console.log(err);
+          })
     }
-
+  }
   }
 
   edit(id: number, produto: Produto) {
