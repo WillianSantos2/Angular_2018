@@ -9,10 +9,17 @@
     },
     {
       "ativo": true,
-      "nome": "Carlos Silva",
+      "nome": "Carlos Silva Souza Moreira",
       "email": "carlos@email.com",
       "pws": "111111",
       "id": 2
+    },
+    {
+      "ativo": true,
+      "nome": "Maria das Dores Socorro",
+      "email": "maria@email.com",
+      "pws": "2222222",
+      "id": 3
     }
   ],
   "produtos": [

@@ -22,22 +22,38 @@ export class AddClienteComponent implements OnInit {
   }
 
   onSubmit(form) {
-    if (this.cliente.pws == form.value.conf) {
-      if (form.valid) {
-        this.clienteService.addCliente(this.cliente)
+    if (form.valid) {
+      if (this.cliente.id == null) {
+        if (this.cliente.pws == form.value.conf) {
+          this.clienteService.addCliente(this.cliente)
+            .subscribe(
+              res => {
+                alert("cadastrado");
+                //console.log(res);
+                this.cliente = new Cliente;
+                form.reset();
+                this.atualizaLista();
+              },
+              err => {
+                alert("Erro ao cadastrar!");
+                console.log(err);
+              }
+            );
+        }
+      } else {
+        this.clienteService.updateCliente(this.cliente.id, this.cliente)
           .subscribe(
             res => {
-              alert("cadastrado");
+              alert("Atualizado");
               //console.log(res);
               this.cliente = new Cliente;
               form.reset();
               this.atualizaLista();
             },
             err => {
-              alert("Erro ao cadastrar!");
+              alert("Erro ao Atualizar!");
               console.log(err);
-            }
-          );
+            })
       }
     }
 
@@ -75,5 +91,5 @@ export class AddClienteComponent implements OnInit {
   atualizaLista() {
     this.clientes$ = this.clienteService.getClientes();
   }
-  
+
 }
